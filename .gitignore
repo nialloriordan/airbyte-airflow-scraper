@@ -1,0 +1,5 @@
+logs
+scrape.py
+profiles.csv
+__pycache__
+linkedin.json
