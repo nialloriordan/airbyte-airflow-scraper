@@ -10,7 +10,6 @@ from selenium_scripts.linkedin_download import scrape_linkedin
 
 from datetime import timedelta, datetime
 
-import logging
 import os
 
 import pendulum
@@ -47,10 +46,9 @@ with dag:
         script=scrape_linkedin,
         script_args=[
             "https://www.linkedin.com/login?trk=guest_homepage-basic_nav-header-signin",
-            os.getenv("LINKEDIN_USERNAME"),
-            os.getenv("LINKEDIN_PASSWORD"),
             os.path.join(os.getenv("AIRFLOW_HOME"), "inputs", "profiles.csv"),
             results_location,
+            "linkedin_access",
         ],
         task_id="scrape_linked_profiles",
     )
@@ -59,6 +57,8 @@ with dag:
         """
         Uploads a local file to s3.
         """
+        import logging
+
         hook = S3Hook(aws_conn_id)
         hook.load_file(file_path, key, bucket_name, replace=True)
         logging.info(f"loaded {file_path} to s3 bucket:{bucket_name} as {key}")

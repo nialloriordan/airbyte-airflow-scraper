@@ -152,15 +152,10 @@ services:
     restart: always
     container_name: airflow_selenium
     volumes:
-      # Selenium downloads
-      - ./downloads:/home/seluser/downloads
       # Use the hosts shared memory to avoid the browser crashing inside a docker container
       - /dev/shm:/dev/shm
     ports:
       - "4444:4444"
-    networks:
-      - default
-      - postgres_bridge
 
 networks:
   postgres_bridge:

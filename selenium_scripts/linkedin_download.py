@@ -1,23 +1,25 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 import json
-from selenium import webdriver
+from airflow.hooks.base_hook import BaseHook
 
 
 def scrape_linkedin(
     driver,
     linkedin_url,
-    linkedin_username,
-    linkedin_password,
     profiles_location,
     results_location,
+    linkedin_conn_id,
 ):
+    # get linkedin connection
+    linkedin_conn = BaseHook.get_connection(linkedin_conn_id)
+
     # login to Linkedin
     driver.get(linkedin_url)
     username = driver.find_element_by_id("username")
-    username.send_keys(linkedin_username)
+    username.send_keys(linkedin_conn.login)
     password = driver.find_element_by_id("password")
-    password.send_keys(linkedin_password)
+    password.send_keys(linkedin_conn.password)
     sign_in_button = driver.find_element_by_xpath('//*[@type="submit"]')
     sign_in_button.click()
 
