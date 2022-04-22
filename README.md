@@ -1,9 +1,11 @@
 # airbyte-airflow-scraper <!-- omit in toc -->
 
-<details open>
+<details>
     <summary>Table of Contents</summary>
 
 - [Overview](#overview)
+- [Airflow DAG](#airflow-dag)
+- [System Design](#system-design)
 - [Quick Start](#quick-start)
   - [TL;DR](#tldr)
   - [Initialising Environment](#initialising-environment)
@@ -35,6 +37,16 @@ The purpose of this repository is to scrape user data from Linkedin using and in
 
 For more details follow the Airbyte tutorial: https://airbyte.com/tutorials/data-scraping-with-airflow-and-beautiful-soup. There are some differences between this implementation and Airbyte's tutorial which can be found in the [Airflow - Airbyte Configuration](#airflow---airbyte-configuration) section.
 
+## Airflow DAG
+
+The Airflow DAG is as follows:
+
+![Airflow DAG](./images/airflow_dag.png)
+## System Design
+
+The overall system design is as follows:
+
+![System design](./images/system_design.png)
 ## Quick Start
 
 <details>

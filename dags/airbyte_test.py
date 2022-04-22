@@ -68,7 +68,7 @@ with dag:
 
     # Upload results to S3
     task_upload_to_s3 = ExtendedPythonOperator(
-        task_id="upload_to_s3",
+        task_id="upload_linkedin_json_data_to_s3",
         python_callable=upload_file_to_S3,
         op_kwargs={
             "aws_conn_id": "aws_access",
@@ -80,7 +80,7 @@ with dag:
 
     # trigger Airbyte connector once results are uploaded to S3
     json_to_postgres = AirbyteTriggerSyncOperator(
-        task_id="airbyte_airflow_linkedin",
+        task_id="sync_json_data_to_postgres",
         airbyte_conn_id="airbyte_linkedin_connection",
         connection_id="a0852e35-03f2-4040-8fac-b6d839d0751b",
         asynchronous=False,
