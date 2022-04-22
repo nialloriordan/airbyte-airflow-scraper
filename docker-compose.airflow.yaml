@@ -149,7 +149,7 @@ services:
     image: docker_selenium:latest
     build:
       context: .
-      dockerfile: Dockerfile-selenium
+      dockerfile: Dockerfile.selenium
     restart: always
     container_name: airflow_selenium
     volumes:
