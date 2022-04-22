@@ -7,8 +7,6 @@ x-airflow-common:
     dockerfile: Dockerfile
   environment:
     &airflow-common-env
-    LINKEDIN_USERNAME: $LINKEDIN_USERNAME
-    LINKEDIN_PASSWORD: $LINKEDIN_PASSWORD
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
@@ -163,6 +161,10 @@ services:
     networks:
       - default
       - postgres_bridge
+
+networks:
+  postgres_bridge:
+    external: true
 
 volumes:
   postgres-db-volume:
