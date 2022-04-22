@@ -1,5 +1,5 @@
 from airflow.hooks.S3_hook import S3Hook
-from airflow.models import DAG
+from airflow.models import DAG, Variable
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
 
@@ -13,6 +13,9 @@ from datetime import timedelta, datetime
 import os
 
 import pendulum
+
+# global variables
+DAG_CONFIG = Variable.get("airbyte_config", deserialize_json=True)
 
 # specify local timezone
 local_tz = pendulum.timezone("Europe/London")
@@ -68,10 +71,10 @@ with dag:
         task_id="upload_to_s3",
         python_callable=upload_file_to_S3,
         op_kwargs={
-            "aws_conn_id": "aws_data_dev",
+            "aws_conn_id": "aws_access",
             "file_path": results_location,
-            "key": "airbyte_results/linkedin.json",
-            "bucket_name": "fc-dev-uk-data-tests",
+            "key": DAG_CONFIG["aws_s3_key"],
+            "bucket_name": DAG_CONFIG["aws_s3_bucket"],
         },
     )
 

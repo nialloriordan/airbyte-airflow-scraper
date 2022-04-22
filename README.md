@@ -14,6 +14,9 @@
   - [Initialise Airflow](#initialise-airflow)
   - [Run Airflow](#run-airflow)
 - [Airflow - Airbyte Configuration](#airflow---airbyte-configuration)
+  - [1. Create Airflow Connection for Linkedin](#1-create-airflow-connection-for-linkedin)
+  - [2. Create Connection to AWS](#2-create-connection-to-aws)
+  - [3. Create Connection to Airbyte scheduler](#3-create-connection-to-airbyte-scheduler)
 - [Architecture](#architecture)
   - [Airflow](#airflow)
     - [Metadata Database - Postgres](#metadata-database---postgres)
@@ -177,7 +180,29 @@ There is no need to install Python3, Airbyte, Postgres, Chrome driver or Airflow
 
 Once your `.env` has been created as specified in the [Quick Start](quick-start) section, the only other necessary configuration is to create connections within the Airflow UI.
 
+### 1. Create Airflow Connection for Linkedin
 
+Provide credentials to login to Linkedin with you email and password:
+
+![Linkedin Connection](./images/linkedin_connection.png)
+
+### 2. Create Connection to AWS
+
+Provide IAM credentials with access key and secret access key to save files to S3:
+
+![AWS Connection](./images/aws_connection.png)
+
+It is also necessary to create Airflow variables for the AWS S3 bucket and corresponding key.
+
+![AWS Airflow Variables](./images/airflow_variables.png)
+
+### 3. Create Connection to Airbyte scheduler
+
+Create connection to Airbyte as follows:
+
+![Airbyte Connection](./images/airbyte_connection.png)
+
+Note: The Airbyte webapp runs on port 8000 but the Airbyte server runs on port 8001
 
 ## Architecture
 
