@@ -178,7 +178,7 @@ Place your dag files within [dags/](dags/) and your plugins within [plugins/](pl
 
 There is no need to install Python3, Airbyte, Postgres, Chrome driver or Airflow locally as this is managed by our docker-compose files: [docker-compose.airbyte.yaml](docker-compose.airbyte.yaml) and [docker-compose.airflow.yaml](docker-compose.airflow.yaml).
 
-Once your `.env` has been created as specified in the [Quick Start](quick-start) section, the only other necessary configuration is to create connections within the Airflow UI.
+Once your `.env` has been created (use `example.env` as a base) as specified in the [Quick Start](quick-start) section, the only other necessary configuration is to create connections within the Airflow UI.
 
 ### 1. Create Airflow Connection for Linkedin
 
