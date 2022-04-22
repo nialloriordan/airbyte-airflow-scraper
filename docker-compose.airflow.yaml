@@ -21,6 +21,7 @@ x-airflow-common:
     - ./config/airflow.cfg:/opt/airlfow/airflow.cfg
     - ./selenium_scripts:/opt/airflow/selenium_scripts
     - ./inputs:/opt/airflow/inputs
+    - ./outputs:/opt/airflow/outputs
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     redis:
