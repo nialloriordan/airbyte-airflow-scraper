@@ -3,3 +3,4 @@ scrape.py
 __pycache__
 linkedin.json
 .env
+temporal
